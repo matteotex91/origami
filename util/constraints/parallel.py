@@ -7,7 +7,9 @@ class Parallel(Constraint):
     s1: Segment
     s2: Segment
 
-    def __init__(self) -> None:
+    def __init__(
+        self,
+    ) -> None:
         super().__init__()
 
     def equation(self) -> float:

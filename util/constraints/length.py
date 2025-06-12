@@ -4,12 +4,14 @@ import numpy as np
 
 
 class Length(Constraint):
-    s: Segment
-    l: float
+    se: Segment
+    le: float
 
-    def __init__(self, s: Segment) -> None:
+    def __init__(self, se: Segment) -> None:
         super().__init__()
-        self.s = s
+        self.se = se
 
     def equation(self) -> float:
-        return np.abs(np.linalg.norm(self.s.v1.position - self.s.v2.position) - self.l)
+        return np.abs(
+            np.linalg.norm(self.se.v1.position - self.se.v2.position) - self.le
+        )
