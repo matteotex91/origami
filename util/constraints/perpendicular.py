@@ -9,6 +9,7 @@ class Perpendicular(Constraint):
 
     def __init__(self) -> None:
         super().__init__()
+        self.priority = 4
 
     def equation(self) -> float:
         return np.dot(self.s1.get_versor(), self.s2.get_versor())

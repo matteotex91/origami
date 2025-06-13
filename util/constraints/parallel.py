@@ -11,6 +11,7 @@ class Parallel(Constraint):
         self,
     ) -> None:
         super().__init__()
+        self.priority = 3
 
     def equation(self) -> float:
         return np.dot(self.s1.get_versor(), self.s2.get_versor()) - 1
