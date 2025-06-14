@@ -26,14 +26,21 @@ class Sketch:
     def add_constraint(self, c: Constraint):
         self.constraints.append(c)
 
-    def get_closer_vertex(self, position: np.ndarray):
+    def is_vertex_close_to(self, position: np.ndarray, max_dist: float = 10):
         if len(self.vertices) == 0:
-            return None
-        elif len(self.vertices) == 1:
-            return self.vertices[0]
+            return False
         else:
+            return (
+                np.min([np.linalg.norm(position - v.position) for v in self.vertices])
+                <= max_dist
+            )
+
+    def get_closer_vertex(self, position: np.ndarray, max_dist: float = 10):
+        if self.is_vertex_close_to(position):
             distances = [np.linalg.norm(position - v.position) for v in self.vertices]
             return self.vertices[np.argmin(distances)]
+        else:
+            return None
 
     def get_constraints_from_vertex(self, v: Vertex):
         related = []
