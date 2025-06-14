@@ -7,8 +7,10 @@ class Fixed(Constraint):
     v: Vertex
     pos: np.ndarray
 
-    def __init__(self) -> None:
+    def __init__(self, v: Vertex, pos: np.ndarray) -> None:
         super().__init__()
+        self.v = v
+        self.pos = pos
         self.priority = 0
 
     def equation(self) -> float:

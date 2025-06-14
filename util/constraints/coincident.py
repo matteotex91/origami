@@ -7,7 +7,7 @@ class Coincident(Constraint):
     v1: Vertex
     v2: Vertex
 
-    def __init__(self) -> None:
+    def __init__(self, v1: Vertex, v2: Vertex) -> None:
         super().__init__()
         self.priority = 1
 
