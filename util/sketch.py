@@ -43,11 +43,19 @@ class Sketch:
             return None
 
     def get_constraints_from_vertex(self, v: Vertex):
-        related = []
+        related = list()
         for c in self.constraints:
             if v in c.get_related_vertexes() and c not in related:
                 related.append(c)
         return related
+
+    def get_fixed_constraints(self):
+        f = list()
+        for c in self.constraints:
+            if isinstance(c, Fixed):
+                c.__class__ = Fixed
+                f.append(c)
+        return f
 
     def get_constraints_from_segment(self, s: Segment):
         related = []
@@ -55,6 +63,12 @@ class Sketch:
             if s in c.get_related_segments() and c not in related:
                 related.append(c)
         return related
+
+    def is_fixed(self, v: Vertex):
+        for f in self.get_fixed_constraints():
+            if f.v == v:
+                return True
+        return False
 
     def solve_constraints(
         self, tol: float, max_iter: int = 5000, step_size: float = 1e-2
