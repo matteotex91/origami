@@ -19,3 +19,9 @@ class Constraint:
 
     def solution_step(self, step_size: float) -> None:
         raise NotImplementedError()
+
+    def get_related_vertexes(self) -> list:
+        raise NotImplementedError()
+
+    def get_related_segments(self) -> list:
+        raise NotImplementedError()

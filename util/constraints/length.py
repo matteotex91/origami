@@ -23,3 +23,9 @@ class Length(Constraint):
         delta = delta * (1 - self.le / np.linalg.norm(delta)) * step_size / 2
         self.se.v1.position = self.se.v1.position + delta
         self.se.v2.position = self.se.v2.position - delta
+
+    def get_related_segments(self) -> list:
+        return list([self.se])
+
+    def get_related_vertexes(self) -> list:
+        return list([self.se.v1, self.se.v2])

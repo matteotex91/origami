@@ -18,3 +18,9 @@ class Fixed(Constraint):
 
     def solution_step(self, step_size: float) -> None:
         self.v.position = self.pos
+
+    def get_related_segments(self) -> list:
+        return list()
+
+    def get_related_vertexes(self) -> list:
+        return list([self.v])

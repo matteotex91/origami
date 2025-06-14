@@ -18,3 +18,9 @@ class Coincident(Constraint):
         delta = step_size * (self.v2.position - self.v1.position) / 2
         self.v1.position = self.v1.position + delta
         self.v2.position = self.v2.position - delta
+
+    def get_related_segments(self) -> list:
+        return list()
+
+    def get_related_vertexes(self) -> list:
+        return list([self.v1, self.v2])

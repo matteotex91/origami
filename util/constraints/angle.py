@@ -1,6 +1,5 @@
 from util.constraints.constraint import Constraint
 from util.segment import Segment
-from util.vertex import Vertex
 import numpy as np
 
 
@@ -26,3 +25,9 @@ class Angle(Constraint):
         angle_step = angle * step_size / 2
         self.s1.rotate_around_center(angle_step)
         self.s2.rotate_around_center(-angle_step)
+
+    def get_related_segments(self) -> list:
+        return list([self.s1, self.s2])
+
+    def get_related_vertexes(self) -> list:
+        return list([self.s1.v1, self.s1.v2, self.s2.v1, self.s2.v2])

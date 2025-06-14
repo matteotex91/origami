@@ -35,6 +35,20 @@ class Sketch:
             distances = [np.linalg.norm(position - v.position) for v in self.vertices]
             return self.vertices[np.argmin(distances)]
 
+    def get_constraints_from_vertex(self, v: Vertex):
+        related = []
+        for c in self.constraints:
+            if v in c.get_related_vertexes() and c not in related:
+                related.append(c)
+        return related
+
+    def get_constraints_from_segment(self, s: Segment):
+        related = []
+        for c in self.constraints:
+            if s in c.get_related_segments() and c not in related:
+                related.append(c)
+        return related
+
     def solve_constraints(
         self, tol: float, max_iter: int = 5000, step_size: float = 1e-2
     ) -> bool:
@@ -43,7 +57,7 @@ class Sketch:
         priority_map = [(c.priority, c) for c in self.constraints]
         sorted_constraints = [c for (_, c) in priority_map]
 
-        for i in range(max_iter):
+        for _ in range(max_iter):
             for c in sorted_constraints:
                 c.solution_step(step_size)
             print([np.abs(c.equation()) for c in self.constraints])
@@ -73,3 +87,4 @@ if __name__ == "__main__":
     print(v1.position)
     print(v2.position)
     print(v3.position)
+    print(sk.get_constraints_from_segment(s1))
